@@ -18,14 +18,29 @@ def parse(response):
     for comment in response.css('div.comment-list-item'):
         # 使用xpath 提取HTML 里的评论者昵称 name 和评论内容
         # 并存入字典result，然后将result添加到列表results中
-        pass
+        result = {}
+        
+        user_name = comment.xpath('./a[@class="username"]/text()').re_first('(\w*+)')
+        user_com = comment.xpath('./p/text()').extract_first()
+        
+        result["username"] = user_name
+        result["content"] = user_com
+        
         results.append(result)
 
 # 判断是否有下一页
 def has_next_page(response):
     # 使用 xpath 提取数据来判断是否存在下一页
-    # 然后模拟按钮click()操作进入到下一页
+    # 返回True 或者 False
     pass
+
+#进入到下一页
+def goto_next_page(driver):
+    # 使用driver.find_element_by_xpath 获得下一页的按钮
+    # 然后模拟按钮的 click()操作进入到下一页
+    button = driver.find_element_by_xpath("//div[@class='pagination-container']/li[@class='next-page']/a")
+    button.click()
+
 
 # 等待页面加载完成
 def wait_page_return(driver,page):
