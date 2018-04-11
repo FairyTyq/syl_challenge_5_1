@@ -20,8 +20,8 @@ def parse(response):
         # 并存入字典result，然后将result添加到列表results中
         result = {}
         
-        user_name = comment.xpath('./a[@class="username"]/text()').re_first('(\w*+)')
-        user_com = comment.xpath('./p/text()').extract_first()
+        user_name =comment.xpath('./div[@class="col-md-11 comment-item-body"]/div[1]/a/text()').re_first("([\w-]+)")
+        user_com = comment.xpath('./div[@class="col-md-11 comment-item-body"]/div[2]/p/text()').extract_first()
         
         result["username"] = user_name
         result["content"] = user_com
