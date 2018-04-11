@@ -33,7 +33,7 @@ def parse(response):
 def has_next_page(response):
     # 使用 xpath 提取数据来判断是否存在下一页
     # 返回True 或者 False
-    has_or_not = response.xpath('//div[@class="pagination-container"]/li[@class="next-page"]')
+    has_or_not = response.xpath('//div[@class="pagination-container"]/ul/li[@class="next-page"]')
     if has_or_not == []:
         return False
     else:
@@ -43,7 +43,7 @@ def has_next_page(response):
 def goto_next_page(driver):
     # 使用driver.find_element_by_xpath 获得下一页的按钮
     # 然后模拟按钮的 click()操作进入到下一页
-    button = driver.find_element_by_xpath("//div[@class='pagination-container']/li[@class='next-page']/a")
+    button = driver.find_element_by_xpath("//div[@class='pagination-container']/ul/li[@class='next-page']/a")
     button.click()
     
 
